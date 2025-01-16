@@ -1,0 +1,19 @@
+import bpy
+
+# Replace 'YourCollectionName' with the name of your collection
+collection_name = '1.svg'
+z_offset = 0.00001
+
+# Get the collection
+collection = bpy.data.collections.get(collection_name)
+
+if collection:
+    # Iterate through all objects in the collection
+    for idx,obj in enumerate(collection.objects):
+        print(idx,obj)
+        # Check if the object is a mesh
+        if obj.type == 'MESH':
+            # Move the object along the Z axis
+            obj.location.z += z_offset*idx
+else:
+    print(f"Collection '{collection_name}' not found.")
